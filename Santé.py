@@ -27,7 +27,7 @@ def read_excel_file(file):
     donnees = donnees[1:]
     new_df = pd.DataFrame(donnees, columns=en_tetes)
     return new_df
-df=read_excel_file(r"C:\Users\MIVS\Downloads\BD Santé 19 Décembre.xlsx")
+df=read_excel_file("BD Santé 19 Décembre.xlsx")
 
 page_bg_img = f"""
     <style>

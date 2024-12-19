@@ -169,23 +169,46 @@ def barmode_selected(t):
     else: 
         a='group'
     return a
-
 st.subheader("ANALYSE CROISEE ENTRE VARIABLES CATEGORIELLES")
-selected_variable_1=st.selectbox('***Variable 1***', ['Catégories des RHS prioritaires',"Sous-catégories"], index=1)
+selected_variable_1 = st.selectbox('***Variable 1***', ['Catégories des RHS prioritaires', "Sous-catégories"], index=1)
 selected_variable_2 = st.selectbox("***Variable 2***", df.columns, index=3)
+
+# Filtrer les données
 df2 = df.dropna(subset=[selected_variable_2])
-df2= df2[df2[selected_variable_2] != 0]
-if selected_variable_1=="Sous-catégories":
-    selected_variable=st.multiselect("***Sélectionnez la (ou les) sous-catégorie(s)***", df2["Sous-catégories"].unique(),"IDE")
-    df2=df2[df2["Sous-catégories"].isin(selected_variable)]
+df2 = df2[df2[selected_variable_2] != 0]
+
+# Convertir la colonne `selected_variable_2` en numérique si possible
+df2[selected_variable_2] = pd.to_numeric(df2[selected_variable_2], errors='coerce')
+df2 = df2.dropna(subset=[selected_variable_2])  # Supprimer les lignes avec des valeurs non numériques après conversion
+
+if selected_variable_1 == "Sous-catégories":
+    selected_variable = st.multiselect(
+        "***Sélectionnez la (ou les) sous-catégorie(s)***",
+        df2["Sous-catégories"].unique(),
+        "IDE"
+    )
+    df2 = df2[df2["Sous-catégories"].isin(selected_variable)]
     df_sorted = df2.groupby("Catégories des RHS prioritaires")[selected_variable_2].sum().sort_values(ascending=False).reset_index()
-# Assurez-vous que les catégories sont ordonnées correctement
+
+    # Assurez-vous que les catégories sont ordonnées correctement
     category_order = df_sorted["Catégories des RHS prioritaires"].tolist()
-    fig_croisé=px.bar(df2.groupby('Catégories des RHS prioritaires')[selected_variable_2].sum().reset_index(), x='Catégories des RHS prioritaires',y=selected_variable_2, color='Catégories des RHS prioritaires', color_discrete_sequence=colors)
+    fig_croisé = px.histogram(
+        df_sorted,
+        x='Catégories des RHS prioritaires',
+        y=selected_variable_2,
+        color='Catégories des RHS prioritaires',
+        color_discrete_sequence=colors
+    )
     fig_croisé.update_xaxes(categoryorder='array', categoryarray=category_order)
 else:
-    fig_croisé=px.bar(df2.groupby('Catégories des RHS prioritaires')[selected_variable_2].sum().reset_index(), x='Catégories des RHS prioritaires',y=selected_variable_2, color='Catégories des RHS prioritaires', color_discrete_sequence=colors)
-
+    df_sorted = df2.groupby('Catégories des RHS prioritaires')[selected_variable_2].sum().reset_index()
+    fig_croisé = px.histogram(
+        df_sorted,
+        x='Catégories des RHS prioritaires',
+        y=selected_variable_2,
+        color='Catégories des RHS prioritaires',
+        color_discrete_sequence=colors
+    )
 
 fig_croisé.update_layout(title=f'Graphique en barres groupées - {selected_variable_1 } vs {selected_variable_2 }')
 fig_croisé.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)','paper_bgcolor': 'rgba(0, 0, 0, 0.3)',},title_x=0.20)

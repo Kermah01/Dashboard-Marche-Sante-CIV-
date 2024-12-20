@@ -7,4 +7,5 @@ openpyxl
 scipy
 joblib
 streamlit-extras
+base64
 

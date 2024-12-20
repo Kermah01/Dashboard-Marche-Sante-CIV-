@@ -32,7 +32,7 @@ df=read_excel_file("BD Santé 19 Décembre.xlsx")
 page_bg_img = f"""
     <style>
     [data-testid="stAppViewContainer"] > .main {{
-    background-image: url(https://cdn.futura-sciences.com/sources/images/qr/Celine/systeme%20sant%C3%A9%20%20LIGHTFIELD%20STUDIOS%2C%20Adobe%20Stock.jpeg);
+    background-image: url("data:image/jpeg;base64,{st.image("image/background.jpeg")}");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

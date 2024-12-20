@@ -4,6 +4,7 @@ import plotly.express as px
 import numpy as np
 from streamlit_extras.metric_cards import style_metric_cards # beautify metric card with css
 import plotly.graph_objects as go
+import base64
 import json
 import openpyxl
 from openpyxl import load_workbook
@@ -29,10 +30,23 @@ def read_excel_file(file):
     return new_df
 df=read_excel_file("BD Santé 19 Décembre.xlsx")
 
+
+
+# Fonction pour lire une image locale et la convertir en base64
+def get_base64_image(image_path):
+    with open(image_path, "rb") as img_file:
+        encoded = base64.b64encode(img_file.read()).decode()
+    return encoded
+
+# Spécifiez le chemin de votre image locale
+image_path = "images/background.jpeg"  # Remplacez par le chemin de votre image
+base64_image = get_base64_image(image_path)
+
+# CSS pour définir l'arrière-plan
 page_bg_img = f"""
-    <style>
-    [data-testid="stAppViewContainer"] > .main {{
-    background-image: url("data:image/jpeg;base64,{st.image("image/background.jpeg")}");
+<style>
+[data-testid="stAppViewContainer"] {{
+    background-image: url("data:image/jpeg;base64,{base64_image}");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

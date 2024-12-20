@@ -255,7 +255,7 @@ with quant:
 
 with cam:
     st.subheader("CAMEMBERT")
-    selected_categorical_variable_p = st.selectbox("***Sélectionnez la variable***", df.columns[1:], index=1)
+    selected_categorical_variable_p = st.selectbox("***Sélectionnez la variable***", df.columns[1:], index=0)
     if selected_categorical_variable_p=="Sous-catégories":
         category_counts = df[selected_categorical_variable_p].value_counts()
         fig_pie = px.pie(names=category_counts.index, values=category_counts.values, title=f"Répartition de la variable {selected_categorical_variable_p}",color_discrete_sequence=colors)

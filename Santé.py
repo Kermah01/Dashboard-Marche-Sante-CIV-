@@ -32,7 +32,7 @@ df=read_excel_file("BD Santé 19 Décembre.xlsx")
 page_bg_img = f"""
     <style>
     [data-testid="stAppViewContainer"] > .main {{
-    background-image: url(https://github.com/Kermah01/Dashboard-Marche-Sante-CIV-/blob/main/systeme%20sant%C3%A9%20%20LIGHTFIELD%20STUDIOS%2C%20Adobe%20Stock.jpeg);
+    background-image: url(https://static.vecteezy.com/system/resources/previews/003/462/449/non_2x/medical-technology-and-science-concept-and-health-care-background-free-vector.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

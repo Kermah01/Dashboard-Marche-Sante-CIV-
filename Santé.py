@@ -175,8 +175,6 @@ colors.extend(px.colors.sequential.Aggrnyl)
 st.header("Analyses graphiques", divider="rainbow")
 st.subheader("HISTOGRAMME")
 
-
-
 def barmode_selected(t):
     if t =='empilé':
         a='relative'  
@@ -184,8 +182,8 @@ def barmode_selected(t):
         a='group'
     return a
 st.subheader("ANALYSE CROISEE ENTRE VARIABLES CATEGORIELLES")
-selected_variable_1 = st.selectbox('***Variable 1***', ['Catégories des RHS prioritaires', "Sous-catégories"], index=1)
-selected_variable_2 = st.selectbox("***Variable 2***", df.columns, index=3)
+selected_variable_1 = st.selectbox('***Variable en abscisse***', ['Catégories des RHS prioritaires', "Sous-catégories"], index=1)
+selected_variable_2 = st.selectbox("***Variable en ordonnée***", df.columns, index=3)
 
 # Filtrer les données
 df2 = df.dropna(subset=[selected_variable_2])
@@ -248,8 +246,8 @@ with quant:
     st.subheader("ANALYSE CROISEE ENTRE VARIABLES NUMERIQUES")
     int_columns = df.select_dtypes(include="int").columns
     float_columns = df.select_dtypes(include="float").columns
-    selected_variable_3 = st.selectbox("***Variable 1***", int_columns.union(float_columns))
-    selected_variable_4 = st.selectbox("***Variable 2***",int_columns.union(float_columns),index=2)
+    selected_variable_3 = st.selectbox("***Variable en abscisse***", int_columns.union(float_columns))
+    selected_variable_4 = st.selectbox("***Variable en ordonnée***",int_columns.union(float_columns),index=2)
     fig_scatter_matrix = px.scatter(df, x=selected_variable_3, y=selected_variable_4)
     fig_scatter_matrix.update_layout(title=f'Nuage de points entre {selected_variable_3} et {selected_variable_4}')
     fig_scatter_matrix.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)','paper_bgcolor': 'rgba(0, 0, 0, 0.3)',},title_x=0.15)
@@ -257,7 +255,7 @@ with quant:
 
 with cam:
     st.subheader("CAMEMBERT")
-    selected_categorical_variable_p = st.selectbox("***Sélectionnez une variable catégorielle pour le camembert***", df.columns[1:], index=1)
+    selected_categorical_variable_p = st.selectbox("***Sélectionnez la variable***", df.columns[1:], index=1)
     if selected_categorical_variable_p=="Sous-catégories":
         category_counts = df[selected_categorical_variable_p].value_counts()
         fig_pie = px.pie(names=category_counts.index, values=category_counts.values, title=f"Répartition de la variable {selected_categorical_variable_p}",color_discrete_sequence=colors)

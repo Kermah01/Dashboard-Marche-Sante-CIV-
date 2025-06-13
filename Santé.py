@@ -235,6 +235,9 @@ fig_croisé.update_layout(
         xanchor="center",
         x=0.5
     ),
+    margin=dict(b=140)  # Augmente la marge basse pour la légende exportée
+    plot_bgcolor='white',
+    paper_bgcolor='white'
 )
 fig_croisé.update_traces(marker=dict(opacity=0.7))
 fig_croisé.update_xaxes(showticklabels=False)  # Supprimer les libellés sous les bandes

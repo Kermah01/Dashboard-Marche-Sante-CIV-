@@ -228,7 +228,14 @@ fig_croisé.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)','paper_bgcolor': '
 fig_croisé.update_layout(
     yaxis_title='Effectif',
     xaxis_tickangle=45,
-    legend=dict(x=1.1, y=0.5),  # Déplacer la légende à droite
+    legend=dict(
+        orientation="h",
+        yanchor="top",
+        y=-0.2,        # Ajuste la valeur négative si besoin pour déplacer la légende plus bas
+        xanchor="center",
+        x=0.5
+    ),
+)
 )
 fig_croisé.update_traces(marker=dict(opacity=0.7))
 fig_croisé.update_xaxes(showticklabels=False)  # Supprimer les libellés sous les bandes

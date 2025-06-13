@@ -258,7 +258,7 @@ fig_croisé.update_layout(title=f'Graphique en barres groupées - {selected_vari
 fig_croisé.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)','paper_bgcolor': 'rgba(0, 0, 0, 0.3)',},title_x=0.20)
 # Mise en forme
 fig_croisé.update_layout(**layout_dashboard)
-fig_c.update_layout(legend_title_text="")
+fig_croisé.update_layout(legend_title_text="")
 fig_croisé.update_traces(marker=dict(opacity=0.7))
 fig_croisé.update_xaxes(showticklabels=False)  # Supprimer les libellés sous les bandes
 fig_croisé.update_yaxes(tickformat=".0f")  # Format entier sans 'k' ou 'M'

@@ -196,7 +196,7 @@ layout_export = dict(
         y=-0.25,
         xanchor="center",
         x=0.1,
-        font=dict(color="black")
+        font=dict(color="black"),
         title_text="",
         itemsizing="constant"
     ),

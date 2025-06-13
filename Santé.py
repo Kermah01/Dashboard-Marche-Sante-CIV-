@@ -170,20 +170,7 @@ colors = px.colors.sequential.Rainbow_r
 colors.extend(px.colors.sequential.Agsunset)
 colors.extend(px.colors.sequential.Aggrnyl)
 
-layout_dashboard = dict(
-    plot_bgcolor='rgba(0,0,0,0)',
-    paper_bgcolor='rgba(0,0,0,0.3)',
-    font=dict(color='white'),
-    legend=dict(
-        orientation="h",
-        yanchor="top",
-        y=-0.25,
-        xanchor="center",
-        x=0.5,
-        font=dict(color="white")
-    ),
-    margin=dict(b=140)
-)
+layout_dashboard = dict()
 
 # Couleurs pour EXPORT (fond blanc)
 layout_export = dict(
@@ -255,7 +242,7 @@ else:
     )
 
 fig_croisé.update_layout(title=f'Graphique en barres groupées - {selected_variable_1 } vs {selected_variable_2 }')
-fig_croisé.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)','paper_bgcolor': 'rgba(0, 0, 0, 0.3)',},title_x=0.20)
+#fig_croisé.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)','paper_bgcolor': 'rgba(0, 0, 0, 0.3)',},title_x=0.20)
 # Mise en forme
 fig_croisé.update_layout(**layout_dashboard)
 fig_croisé.update_layout(legend_title_text="")

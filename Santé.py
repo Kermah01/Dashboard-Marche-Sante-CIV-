@@ -170,7 +170,22 @@ colors = px.colors.sequential.Rainbow_r
 colors.extend(px.colors.sequential.Agsunset)
 colors.extend(px.colors.sequential.Aggrnyl)
 
-layout_dashboard = dict()
+layout_dashboard = dict(
+    plot_bgcolor='white',
+    paper_bgcolor='white',
+    font=dict(color='black'),
+    legend=dict(
+        orientation="h",
+        yanchor="top",
+        y=-0.25,
+        xanchor="center",
+        x=0.1,
+        font=dict(color="black"),
+        title_text="",
+        itemsizing="constant"
+    ),
+    margin=dict(b=140)
+)
 
 # Couleurs pour EXPORT (fond blanc)
 layout_export = dict(

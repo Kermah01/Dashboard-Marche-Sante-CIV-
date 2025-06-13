@@ -171,18 +171,16 @@ colors.extend(px.colors.sequential.Agsunset)
 colors.extend(px.colors.sequential.Aggrnyl)
 
 layout_dashboard = dict(
-    plot_bgcolor='white',
-    paper_bgcolor='white',
-    font=dict(color='black'),
+    plot_bgcolor='rgba(0,0,0,0)',
+    paper_bgcolor='rgba(0,0,0,0.3)',
+    font=dict(color='white'),
     legend=dict(
         orientation="h",
         yanchor="top",
         y=-0.25,
         xanchor="center",
-        x=0.1,
-        font=dict(color="black"),
-        title_text="",
-        itemsizing="constant"
+        x=0.5,
+        font=dict(color="white")
     ),
     margin=dict(b=140)
 )

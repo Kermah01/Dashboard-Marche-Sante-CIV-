@@ -236,7 +236,6 @@ fig_croisé.update_layout(
         x=0.5
     ),
 )
-)
 fig_croisé.update_traces(marker=dict(opacity=0.7))
 fig_croisé.update_xaxes(showticklabels=False)  # Supprimer les libellés sous les bandes
 fig_croisé.update_yaxes(tickformat=".0f")  # Format entier sans 'k' ou 'M'

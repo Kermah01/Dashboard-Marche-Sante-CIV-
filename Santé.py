@@ -173,7 +173,7 @@ colors.extend(px.colors.sequential.Aggrnyl)
 layout_dashboard = dict(
     plot_bgcolor='rgba(0,0,0,0)',
     paper_bgcolor='rgba(0,0,0,0)',
-    font=dict(color='white'),
+    font=dict(color='black'),
     legend=dict(
         orientation="h",
         yanchor="top",

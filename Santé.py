@@ -235,7 +235,7 @@ fig_croisé.update_layout(
         xanchor="center",
         x=0.5
     ),
-    margin=dict(b=140)  # Augmente la marge basse pour la légende exportée
+    margin=dict(b=140),  # Augmente la marge basse pour la légende exportée
     plot_bgcolor='white',
     paper_bgcolor='white'
 )

@@ -170,6 +170,36 @@ colors = px.colors.sequential.Rainbow_r
 colors.extend(px.colors.sequential.Agsunset)
 colors.extend(px.colors.sequential.Aggrnyl)
 
+layout_dashboard = dict(
+    plot_bgcolor='rgba(0,0,0,0)',
+    paper_bgcolor='rgba(0,0,0,0.3)',
+    font=dict(color='white'),
+    legend=dict(
+        orientation="h",
+        yanchor="top",
+        y=-0.25,
+        xanchor="center",
+        x=0.5,
+        font=dict(color="white")
+    ),
+    margin=dict(b=140)
+)
+
+# Couleurs pour EXPORT (fond blanc)
+layout_export = dict(
+    plot_bgcolor='white',
+    paper_bgcolor='white',
+    font=dict(color='black'),
+    legend=dict(
+        orientation="h",
+        yanchor="top",
+        y=-0.25,
+        xanchor="center",
+        x=0.5,
+        font=dict(color="black")
+    ),
+    margin=dict(b=140)
+)
 
 # SECTION GRAPHIQUE
 st.header("Analyses graphiques", divider="rainbow")
@@ -225,20 +255,7 @@ else:
 fig_croisé.update_layout(title=f'Graphique en barres groupées - {selected_variable_1 } vs {selected_variable_2 }')
 fig_croisé.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)','paper_bgcolor': 'rgba(0, 0, 0, 0.3)',},title_x=0.20)
 # Mise en forme
-fig_croisé.update_layout(
-    yaxis_title='Effectif',
-    xaxis_tickangle=45,
-    legend=dict(
-        orientation="h",
-        yanchor="top",
-        y=-0.2,        # Ajuste la valeur négative si besoin pour déplacer la légende plus bas
-        xanchor="center",
-        x=0.5
-    ),
-    margin=dict(b=140),  # Augmente la marge basse pour la légende exportée
-    plot_bgcolor='white',
-    paper_bgcolor='white'
-)
+fig_croisé.update_layout(**layout_dashboard)
 fig_croisé.update_traces(marker=dict(opacity=0.7))
 fig_croisé.update_xaxes(showticklabels=False)  # Supprimer les libellés sous les bandes
 fig_croisé.update_yaxes(tickformat=".0f")  # Format entier sans 'k' ou 'M'
@@ -247,6 +264,14 @@ fig_croisé.update_traces(
     textposition='outside'  # Place les valeurs au-dessus des barres
 )
 st.plotly_chart(fig_croisé,use_container_width=True)
+if st.button("Télécharger le graphique (fond blanc)"):
+    # Créer une copie pour l’export avec fond blanc et texte noir
+    fig_export = fig_croisé.to_dict()
+    fig2 = go.Figure(fig_export)
+    fig2.update_layout(**layout_export)
+    fig2.write_image("export.png")  # Nécessite kaleido
+    with open("export.png", "rb") as file:
+        st.download_button("Télécharger l'image", file, "graphique.png")
 
 quant,cam=st.columns(2,gap='medium')
 
